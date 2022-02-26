@@ -14,7 +14,7 @@ export class ScheduleService {
   ) {}
 
   async save(data: any): Promise<Schedule> {
-    const schedule = await this.scheduleRepository.save();
+    const schedule = await this.scheduleRepository.save(data);
     return schedule;
   }
 }

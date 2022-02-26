@@ -7,6 +7,7 @@ import { User } from './user/user.entity';
 import { AuthModule } from './auth/auth.module';
 import { ConfigModule } from '@nestjs/config';
 import { ServiceModule } from './service/service.module';
+import { ScheduleModule } from './schedule/schedule.module';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { ServiceModule } from './service/service.module';
     UserModule,
     AuthModule,
     ServiceModule,
+    ScheduleModule,
   ],
   controllers: [AppController],
   providers: [AppService],

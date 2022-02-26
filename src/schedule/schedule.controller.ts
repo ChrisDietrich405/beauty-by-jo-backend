@@ -10,15 +10,13 @@ export class ScheduleController {
   constructor(private scheduleService: ScheduleService) {}
 
   // With @Body is like (createUserDto = information from the front-end or postman)
-  @Get()
-  index(): any {
-    return this.scheduleService.findAll();
-  }
+  // @Get()
+  // index(): any {
+  //   return this.scheduleService.findAll();
+  // }
 
   @Post()
-  save(@Body()createScheduleDto:CreateScheduleDto): any {
-      return this.scheduleService.save(createScheduleDto)
+  save(@Body() createScheduleDto: CreateScheduleDto): any {
+    return this.scheduleService.save(createScheduleDto);
   }
 }
-
-
