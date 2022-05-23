@@ -1,17 +1,22 @@
 /* eslint-disable prettier/prettier */
-import { IsBoolean, IsDate, IsDefined, IsInt } from 'class-validator';
+import {
+  IsBoolean,
+  IsDate,
+  IsDefined,
+  IsDateString,
+  IsInt,
+} from 'class-validator';
 
 export class CreateScheduleDto {
   @IsDefined()
   @IsInt()
-  specific_service_id
+  specific_service_id;
   @IsDefined()
-  @IsDate()
-  date
+  @IsDateString()
+  date;
   @IsDefined()
   @IsBoolean()
-  status
-  
- 
+  status;
 
+  user_id;
 }

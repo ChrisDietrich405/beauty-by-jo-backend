@@ -20,6 +20,18 @@ export class Schedule {
   })
   date: string;
 
+  @Column({
+    type: 'int',
+    nullable: false,
+  })
+  specific_service_id;
+
+  @Column({
+    type: 'int',
+    nullable: false,
+  })
+  user_id;
+
   @OneToOne(() => SpecificService)
   specificService: SpecificService;
 }

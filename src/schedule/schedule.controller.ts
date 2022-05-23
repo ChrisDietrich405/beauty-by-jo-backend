@@ -1,9 +1,7 @@
-import { Body, Controller, Get, Post, Query } from '@nestjs/common';
-import { get } from 'http';
+import { Body, Controller, Request, Post, Query } from '@nestjs/common';
+import { get, request } from 'http';
 import { CreateScheduleDto } from './create-schedule-dto';
 import { ScheduleService } from './schedule.service';
-
-// import { AppService } from './app.service';
 
 @Controller('/schedule')
 export class ScheduleController {
@@ -16,7 +14,8 @@ export class ScheduleController {
   // }
 
   @Post()
-  save(@Body() createScheduleDto: CreateScheduleDto): any {
+  save(@Body() createScheduleDto: CreateScheduleDto, @Request() req): any {
+    console.log(req.user);
     return this.scheduleService.save(createScheduleDto);
   }
 }
