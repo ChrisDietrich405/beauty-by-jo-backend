@@ -1,5 +1,13 @@
-import { Body, Controller, Request, Post, Query } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Request,
+  Post,
+  Query,
+  UseGuards,
+} from '@nestjs/common';
 import { get, request } from 'http';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { CreateScheduleDto } from './create-schedule-dto';
 import { ScheduleService } from './schedule.service';
 
@@ -7,15 +15,10 @@ import { ScheduleService } from './schedule.service';
 export class ScheduleController {
   constructor(private scheduleService: ScheduleService) {}
 
-  // With @Body is like (createUserDto = information from the front-end or postman)
-  // @Get()
-  // index(): any {
-  //   return this.scheduleService.findAll();
-  // }
-
+  @UseGuards(JwtAuthGuard)
   @Post()
   save(@Body() createScheduleDto: CreateScheduleDto, @Request() req): any {
-    console.log(req.user);
+    createScheduleDto.user_id = req.user.id;
     return this.scheduleService.save(createScheduleDto);
   }
 }

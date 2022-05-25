@@ -17,6 +17,5 @@ export class CreateScheduleDto {
   @IsDefined()
   @IsBoolean()
   status;
-
   user_id;
 }

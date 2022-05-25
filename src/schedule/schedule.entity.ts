@@ -15,10 +15,9 @@ export class Schedule {
   status: boolean;
 
   @Column({
-    type: 'date',
     nullable: false,
   })
-  date: string;
+  date: Date;
 
   @Column({
     type: 'int',
