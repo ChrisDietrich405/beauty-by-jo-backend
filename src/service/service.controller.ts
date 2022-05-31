@@ -15,10 +15,7 @@ export class ServiceController {
   }
 
   @Get('/verifyAvailability')
-  async verifyAvailability(
-    @Query('date') date,
-    @Query('specificServiceId') specificServiceId,
-  ) {
-    return this.serviceService.verifyAvailability(date, specificServiceId);
+  async verifyAvailability(@Query('date') date) {
+    return this.serviceService.verifyAvailability(date);
   }
 }
