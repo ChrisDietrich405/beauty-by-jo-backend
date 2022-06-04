@@ -1,6 +1,7 @@
 import { Body, Controller, Post } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user-dto';
 import { ForgotPasswordDto } from './dto/forgot-password-dto';
+import { ResetPasswordDto } from './dto/reset-password-dto';
 import { UserService } from './user.service';
 
 // import { AppService } from './app.service';
@@ -17,6 +18,15 @@ export class UserController {
 
   @Post('/forgot-password')
   forgotPassword(@Body() forgotPasswordDto: ForgotPasswordDto) {
-    console.log(forgotPasswordDto);
+    return this.userService.forgotPassword(forgotPasswordDto.email);
+  }
+
+  @Post('/reset-password')
+  resetPassword(@Body() resetPasswordDto: ResetPasswordDto) {
+    return this.userService.resetPassword(
+      resetPasswordDto.hash,
+      resetPasswordDto.password,
+      resetPasswordDto.password_confirmation,
+    );
   }
 }

@@ -2,13 +2,13 @@ import {
   Entity,
   Column,
   PrimaryGeneratedColumn,
-  OneToMany,
-  ManyToOne,
+  OneToOne,
+  JoinColumn,
 } from 'typeorm';
 import { User } from './user.entity';
 
 @Entity()
-export class PassworReset {
+export class PasswordReset {
   @PrimaryGeneratedColumn()
   id: number;
   @Column({
@@ -24,6 +24,7 @@ export class PassworReset {
   })
   expires_at: Date;
 
-  @OneToMany((type) => User, (user) => user.passwordResets)
+  @OneToOne((type) => User)
+  @JoinColumn({ name: 'user_id' })
   user: User;
 }
