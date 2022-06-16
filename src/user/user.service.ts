@@ -70,6 +70,7 @@ export class UserService {
       accessToken: process.env.PRIVATE_KEY,
       template_params: {
         to_name: user.firstName,
+        to_email: user.email,
         link: `<a href="${process.env.APP_URL}/reset-password/${passwordReset.hash}">here</a>`,
       },
     };
