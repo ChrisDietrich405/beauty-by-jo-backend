@@ -10,7 +10,7 @@ CREATE TABLE `user` (
   `password` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `IDX_e12875dfb3b1d92d7d7c5377e2` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=15;
+) ENGINE=InnoDB AUTO_INCREMENT=1;
 
 DROP TABLE IF EXISTS `service`;
 CREATE TABLE `service` (
