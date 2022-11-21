@@ -10,7 +10,7 @@ export class AuthService {
   constructor(
     private jwtService: JwtService,
     private userService: UserService,
-  ) {}
+  ) { }
 
   async validateUser({ email, password }: SigninAuthDto): Promise<any> {
     const user = await this.userService.findByEmail(email);
@@ -21,11 +21,20 @@ export class AuthService {
   }
 
   async login(user: any) {
+    const userPayload = {
+      id: user.id,
+      email: user.email,
+      firstName: user.firstName,
+      lastName: user.lastName,
+    }
+
     const payload = { username: user.username, sub: user.id };
+    
     return {
+      user: userPayload,
       access_token: this.jwtService.sign(payload),
+      message: 'You are logged in successfully',
       success: true,
-      message: 'you are logged in successfully',
     };
   }
 }
