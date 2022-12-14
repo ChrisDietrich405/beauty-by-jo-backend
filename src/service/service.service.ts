@@ -21,19 +21,19 @@ export class ServiceService {
     return services;
   }
 
-  async verifyAvailability(date) {
+  async verifyAvailability(id, date) {
     const availability = await this.connection.query(
       `select Date_Ranges.Date, schedule.id is null as available from (
       WITH recursive Date_Ranges AS (
         select CAST(? as datetime) as Date
          union all
-         select date_add(Date, interval 90 minute)
+         select date_add(Date, interval (select time from specific_service where id = ? limit 1) minute)
          from Date_Ranges
          where Date < cast(? as datetime))
       select Date from Date_Ranges
     ) as Date_Ranges
     left join schedule on Date_Ranges.date = schedule.date`,
-      [`${date} 09:00:00`, `${date} 16:00:00`],
+      [`${date} 09:00:00`, id, `${date} 16:00:00`],
     );
     return availability;
   }
